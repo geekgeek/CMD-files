@@ -1,0 +1,38 @@
+####################################################################
+####################################################################
+####################################################################
+#Dockerfile
+
+FROM ubuntu:latest
+RUN apt-get update -y
+#RUN apt-get install python3 -y
+RUN apt-get install -y python-pip python-dev build-essential
+COPY . /app
+WORKDIR /app
+RUN pip install Flask==1.0.2
+ENTRYPOINT ["python"]
+CMD ["app.py"]
+
+####################################################################
+####################################################################
+####################################################################
+#docker-compose.yml
+
+version: "3"
+services:
+    php:
+        ports:
+            - '9999:80'
+        volumes:
+            - './php_files/:/var/www/html/'
+        image: 'php:7.0-apache'
+    pyflask:
+        build:
+            dockerfile: Dockerfile
+            context: ./python_files/
+        volumes:
+            - "./python_files/:/app"
+        ports:
+            - '9998:80'
+        depends_on:
+            - php
