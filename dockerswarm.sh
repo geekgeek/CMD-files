@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# stop all docker containers
+#. dockerswarm.sh stop
+
+#start all docker containers
+#. dockerswarm.sh start
+
 if [ "$1" = "start" ];
 then
      echo evaluated as start
