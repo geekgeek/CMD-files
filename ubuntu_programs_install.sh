@@ -17,3 +17,8 @@ sudo apt-get install i3 -y
 
 #latex
 sudo apt-get install texlive-full -y
+
+#python jupyter notebook
+apt-get install python3-pip -y
+python3 -m pip install jupyter
+
