@@ -1,0 +1,52 @@
+#<links>
+https://www.itzgeek.com/how-tos/linux/centos-how-tos/install-xrdp-on-centos-7-rhel-7.html
+https://www.techrepublic.com/article/how-to-install-a-gui-on-top-of-centos-7/
+
+https://linuxconfig.org/how-to-change-system-keyboard-keymap-layout-on-centos-7-linux
+#</links>
+
+sudo yum -y groups install "GNOME Desktop"
+
+echo "exec gnome-session" >> ~/.xinitrc
+
+systemctl set-default graphical.target
+
+#rdp
+rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+
+yum -y install xrdp tigervnc-server
+
+systemctl start xrdp
+
+netstat -antup | grep xrdp
+
+systemctl enable xrdp
+
+#firewall external machine
+firewall-cmd --permanent --add-port=3389/tcp
+
+firewall-cmd --reload
+
+#configure se linux
+chcon --type=bin_t /usr/sbin/xrdp
+
+
+
+###########################################
+#Fix firewall
+reboot
+
+firewall-cmd --permanent --add-port=3389/tcp
+
+firewall-cmd --reload
+
+##########################################
+#change keyboard layout
+yum install kbd
+loadkeys no
+
+#localectl list-keymaps
+
+localectl set-keymap no
+
+reboot
