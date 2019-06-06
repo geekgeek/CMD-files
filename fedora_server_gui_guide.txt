@@ -4,7 +4,21 @@ https://www.server-world.info/en/note?os=Fedora_29&p=desktop&f=2
 https://ulyaoth.com/tips-tricks/how-to-install-a-graphical-desktop-on-fedora-server/
 </links>
 
-#GUI
+#######################################################
+#GUI alternative 2 ( keyboard layout wrong, must change keyboard in GUI )
+sudo dnf groupinstall "LXDE Desktop"
+
+echo "exec /usr/bin/startlxde" >> ~/.xinitrc
+
+systemct1 set-default graphical.target
+
+(
+change keyboard in GUI
+Preferences --> Input method selector --> Use IBus
+)
+
+#######################################################
+#GUI alternative 1
 dnf -y group install "KDE Plasma Workspaces" 
 
 echo "exec /usr/bin/startkde" >> ~/.xinitrc 
@@ -12,7 +26,7 @@ echo "exec /usr/bin/startkde" >> ~/.xinitrc
 systemctl set-default graphical.target
 
 reboot
-
+#######################################################
 #XRDP
 dnf -y install xrdp 
 
