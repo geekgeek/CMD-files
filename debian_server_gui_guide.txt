@@ -1,0 +1,9 @@
+<links>
+https://www.hiroom2.com/2017/06/19/debian-9-install-xrdp/
+</links>
+
+apt-get install kde-standard
+
+sudo apt install -y xrdp tigervnc-standalone-server
+
+sudo systemctl restart xrdp
