@@ -1,0 +1,12 @@
+#vim keybindings
+
+CTRL w w = go to next window
+
+:Explore - opens netrw in the current window
+:Sexplore - opens netrw in a horizontal split
+:Vexplore - opens netrw in a vertical split
+
+
+
+Links:
+https://shapeshed.com/vim-netrw/
